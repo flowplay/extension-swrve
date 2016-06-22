@@ -5,7 +5,7 @@
 namespace extension_swrve {
 	
 	
-	int SampleMethod(int inputValue);
+	void init(int appId, const char* apiKey );
 	
 	
 }

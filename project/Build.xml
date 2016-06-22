@@ -7,8 +7,7 @@
 		<compilerflag value="-Iinclude"/>
 		
 		<file name="common/ExternalInterface.cpp"/>
-		<file name="common/extension-swrve.cpp"/>
-		
+
 	</files>
 	
 	<set name="SLIBEXT" value=".lib" if="windows"/>

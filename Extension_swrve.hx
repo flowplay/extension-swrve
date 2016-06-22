@@ -14,34 +14,25 @@ import openfl.utils.JNI;
 class Extension_swrve {
 	
 	
-	public static function sampleMethod (inputValue:Int):Int {
+	public static function init (appId:Int, apiKey:String):Void {
 		
-		#if (android)
+		#if (android || CPP)
 		
-		var resultJNI = extension_swrve_sample_method_jni(inputValue);
-		var resultNative = extension_swrve_sample_method(inputValue);
-		
-		if (resultJNI != resultNative) {
-			
-			throw "Fuzzy math!";
-			
-		}
-		
-		return resultNative;
+		extension_swrve_init(appId, apiKey);
 		
 		#else
 		
-		return extension_swrve_sample_method(inputValue);
+		trace('swrve not supported on this platform');
 		
 		#end
 		
 	}
 	
 	
-	#if (android || cpp)
-	private static var extension_swrve_init = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(I)I");
+	#if android
+	private static var extension_swrve_init = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;)V");
 	#elseif cpp
-	private static var extension_swrve_init = Lib.load ("flowplayextension", "flowplayextension_init", 1);
+	private static var extension_swrve_init = Lib.load ("extension_swrve", "extension_swrve_init", 2);
 	#end
 	
 	

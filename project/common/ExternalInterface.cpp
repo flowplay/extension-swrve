@@ -14,14 +14,13 @@
 using namespace extension_swrve;
 
 
-
-static value extension_swrve_sample_method (value inputValue) {
+static value extension_swrve_init (value appId, value apiKey) {
 	
-	int returnValue = SampleMethod(val_int(inputValue));
-	return alloc_int(returnValue);
+	//int returnValue = init(val_int(appId), val_string(apiKey));
+	return alloc_null();
 	
 }
-DEFINE_PRIM (extension_swrve_sample_method, 1);
+DEFINE_PRIM (extension_swrve_init, 2);
 
 
 
