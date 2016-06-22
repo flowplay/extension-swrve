@@ -5,7 +5,7 @@
 namespace extension_swrve {
 	
 	
-	void init(int appId, const char* apiKey );
+	void init(int appId, const char* apiKey, const char* userId, const char* appVersion );
 	
 	
 }

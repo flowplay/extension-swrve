@@ -14,13 +14,13 @@
 using namespace extension_swrve;
 
 
-static value extension_swrve_init (value appId, value apiKey) {
+static value extension_swrve_init (value appId, value apiKey, value userId, value appVersion) {
 	
-	//int returnValue = init(val_int(appId), val_string(apiKey));
+	//int returnValue = init(val_int(appId), val_string(apiKey), val_string(userId), val_string(appVersion));
 	return alloc_null();
 	
 }
-DEFINE_PRIM (extension_swrve_init, 2);
+DEFINE_PRIM (extension_swrve_init, 4);
 
 
 

@@ -14,11 +14,11 @@ import openfl.utils.JNI;
 class Extension_swrve {
 	
 	
-	public static function init (appId:Int, apiKey:String):Void {
+	public static function init (appId:Int, apiKey:String, userId:String, appVersion:String):Void {
 		
 		#if (android || CPP)
 		
-		extension_swrve_init(appId, apiKey);
+		extension_swrve_init(appId, apiKey, userId, appVersion);
 		
 		#else
 		
@@ -30,9 +30,9 @@ class Extension_swrve {
 	
 	
 	#if android
-	private static var extension_swrve_init = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;)V");
+	private static var extension_swrve_init = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 	#elseif cpp
-	private static var extension_swrve_init = Lib.load ("extension_swrve", "extension_swrve_init", 2);
+	private static var extension_swrve_init = Lib.load ("extension_swrve", "extension_swrve_init", 4);
 	#end
 	
 	

@@ -12,6 +12,8 @@ import android.util.Log;
 import com.swrve.sdk.SwrveSDK;
 import com.swrve.sdk.config.SwrveConfig;
 
+import java.lang.Override;
+
 
 /* 
 	You can use the Android Extension class in order to hook
@@ -42,18 +44,16 @@ import com.swrve.sdk.config.SwrveConfig;
 public class Extension_swrve extends Extension {
 	
 	
-	public static void initSwrve (int appId, String apiKey) {
-
+	public static void initSwrve (int appId, String apiKey, String userId, String appVersion ) {
 		try {
-			Log.d("SwrveDemo", "initialize the Swrve SDK " + appId);
 			SwrveConfig config = new SwrveConfig();
-			// To use the EU stack, include this in your config.
-			// config.setSelectedStack(SwrveStack.EU);
+			config.setUserId(userId);
+			config.setAppVersion(appVersion);
 			SwrveSDK.createInstance(Extension.mainActivity, appId, apiKey, config);
+			SwrveSDK.onCreate(Extension.mainActivity);
 		} catch (IllegalArgumentException exp) {
 			Log.e("SwrveDemo", "Could not initialize the Swrve SDK", exp);
 		}
-		
 	}
 
 
@@ -73,9 +73,6 @@ public class Extension_swrve extends Extension {
 	 * Called when the activity is starting.
 	 */
 	public void onCreate (Bundle savedInstanceState) {
-
-		SwrveSDK.onCreate(Extension.mainActivity);
-
 	}
 
 
@@ -83,9 +80,9 @@ public class Extension_swrve extends Extension {
 	 * Perform any final cleanup before an activity is destroyed.
 	 */
 	public void onDestroy () {
-
-		SwrveSDK.onDestroy(Extension.mainActivity);
-
+		if(SwrveSDK.getInstance() != null) {
+			SwrveSDK.onDestroy(Extension.mainActivity);
+		}
 	}
 
 
@@ -93,9 +90,10 @@ public class Extension_swrve extends Extension {
 	 * Called as part of the activity lifecycle when an activity is going into
 	 * the background, but has not (yet) been killed.
 	 */
-	public void onPause () {
-		Log.d("SwrveDemo", "onPause");
-		SwrveSDK.onPause();
+	public void onPause() {
+		if(SwrveSDK.getInstance() != null) {
+			SwrveSDK.onPause();
+		}
 
 	}
 
@@ -115,9 +113,10 @@ public class Extension_swrve extends Extension {
 	 * Called after {@link #onRestart}, or {@link #onPause}, for your activity
 	 * to start interacting with the user.
 	 */
-	public void onResume () {
-		Log.d("SwrveDemo", "onResume");
-		SwrveSDK.onResume(Extension.mainActivity);
+	public void onResume() {
+		if(SwrveSDK.getInstance() != null) {
+			SwrveSDK.onResume(Extension.mainActivity);
+		}
 	}
 
 
