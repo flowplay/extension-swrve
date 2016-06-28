@@ -1,12 +1,82 @@
 <xml>
 	
 	<include name="${HXCPP}/build-tool/BuildCommon.xml"/>
-	
-	<files id="common">
+
+	<files id="iphone">
 		
 		<compilerflag value="-Iinclude"/>
-		
-		<file name="common/ExternalInterface.cpp"/>
+		<compilerflag value="-I../dependencies/ios/SwrveSDK/SDK/Track" />
+		<compilerflag value="-I../dependencies/ios/SwrveSDK/SDK/Talk" />
+		<compilerflag value="-I../dependencies/ios/SwrveSDK/SDK/Permissions" />
+		<compilerflag value="-I../dependencies/ios/SwrveSDK/SDK/Conversation" />
+		<compilerflag value="-I../dependencies/ios/SwrveSDKCommon/Common" />
+		<compilerflag value="-I../dependencies/ios/SwrveConversationSDK/Conversation" />
+		<compilerflag value="-I../dependencies/ios/SwrveConversationSDK/Conversation/Categories" />
+		<compilerflag value="-fobjc-arc" />
+
+		<!-- swrve shit -->
+		<file name="../dependencies/ios/SwrveSDK/SDK/Track/Swrve.m" />
+		<file name="../dependencies/ios/SwrveSDK/SDK/Track/SwrveReceiptProvider.m" />
+		<file name="../dependencies/ios/SwrveSDK/SDK/Track/SwrveResourceManager.m" />
+		<file name="../dependencies/ios/SwrveSDK/SDK/Track/SwrveSwizzleHelper.m" />
+
+		<file name="../dependencies/ios/SwrveConversationSDK/Conversation/Categories/UINavigationController+KeyboardResponderFix.m" />
+		<file name="../dependencies/ios/SwrveConversationSDK/Conversation/Categories/UIWebView+YouTubeVimeo.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveBaseConversation.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveContentHTML.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveContentImage.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveContentItem.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveContentSpacer.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveContentStarRating.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveContentStarRatingView.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveContentVideo.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationAtom.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationAtomFactory.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationButton.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationContainerViewController.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationEvents.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationItemViewController.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationPane.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationResource.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationsNavigationController.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationStyler.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveConversationUIButton.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveInputItem.m" />
+		<file name="../dependencies/ios//SwrveConversationSDK/Conversation/SwrveInputMultiValue.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Conversation/SwrveConversation.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Conversation/SwrveConversationCampaign.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Permissions/ISHPermissionRequest+All.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Permissions/ISHPermissionRequest.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Permissions/ISHPermissionRequestAddressBook.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Permissions/ISHPermissionRequestLocation.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Permissions/ISHPermissionRequestNotificationsRemote.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Permissions/ISHPermissionRequestPhotoCamera.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Permissions/ISHPermissionRequestPhotoLibrary.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveBaseCampaign.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveButton.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveCampaign.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveImage.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveMessage.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveMessageController.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveMessageFormat.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveMessageViewController.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrvePermissions.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveTalkQA.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveTrigger.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Talk/SwrveTriggerCondition.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Track/Swrve.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Track/SwrveReceiptProvider.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Track/SwrveResourceManager.m" />
+		<file name="../dependencies/ios//SwrveSDK/SDK/Track/SwrveSwizzleHelper.m" />
+		<file name="../dependencies/ios//SwrveSDKCommon/Common/SwrveCommon.m" />
+		<file name="../dependencies/ios//SwrveSDKCommon/Common/SwrveCommonConnectionDelegate.m" />
+		<file name="../dependencies/ios//SwrveSDKCommon/Common/SwrveSignatureProtectedFile.m" />
+
+		<!-- extension files to interface with swrve -->
+		<file name="src/ExtensionSwrve.mm" />
+		<file name="src/ExtensionSwrveExternal.mm" />
+
+
 
 	</files>
 	
@@ -20,10 +90,12 @@
 		
 		<outdir name="../ndll/${BINDIR}"/>
 		<ext value=".ndll" if="windows || mac || linux"/>
-		<files id="common"/>
-		
+		<section if="iphone" >
+			<files id="iphone" if="iphone" />
+		</section>
+
 	</target>
-	
+
 	<target id="default">
 		
 		<target id="NDLL"/>

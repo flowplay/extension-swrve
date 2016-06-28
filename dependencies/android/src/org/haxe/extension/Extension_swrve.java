@@ -56,6 +56,19 @@ public class Extension_swrve extends Extension {
 		}
 	}
 
+	public static void userUpdate (String key, String value) {
+		if(SwrveSDK.getInstance() != null) {
+			Map<String, String> attributes = new HashMap<String, String>();
+			attributes.put(key, value);
+			SwrveSDK.userUpdate(attributes);
+		}
+	}
+
+	public static void sendEvent (String eventName) {
+		if(SwrveSDK.getInstance() != null) {
+			SwrveSDK.event(eventName);
+		}
+	}
 
 	/**
 	 * Called when an activity you launched exits, giving you the requestCode

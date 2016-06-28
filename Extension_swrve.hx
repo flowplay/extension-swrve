@@ -14,11 +14,10 @@ import openfl.utils.JNI;
 class Extension_swrve {
 	
 	
-	public static function init (appId:Int, apiKey:String, userId:String, appVersion:String):Void {
-		
-		#if (android || CPP)
-		
-		extension_swrve_init(appId, apiKey, userId, appVersion);
+	public static function initFart (appId:Int, apiKey:String, userId:String, appVersion:String):Void {
+
+		#if (android || ios || cpp || CPP)
+		initSwrve(appId, apiKey, userId, appVersion);
 		
 		#else
 		
@@ -30,9 +29,11 @@ class Extension_swrve {
 	
 	
 	#if android
-	private static var extension_swrve_init = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
-	#elseif cpp
-	private static var extension_swrve_init = Lib.load ("extension_swrve", "extension_swrve_init", 4);
+	private static var initSwrve = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+	private static var userUpdate = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "userUpdate", "(Ljava/lang/String;Ljava/lang/String;)V");
+	private static var sendEvent = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "sendEvent", "(Ljava/lang/String;)V");
+	#elseif (ios || cpp || CPP)
+	private static var initSwrve: Dynamic = Lib.load ("swrveExt", "initSwrve", 4);
 	#end
 	
 	
