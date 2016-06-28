@@ -14,7 +14,7 @@ import openfl.utils.JNI;
 class Extension_swrve {
 	
 	
-	public static function initFart (appId:Int, apiKey:String, userId:String, appVersion:String):Void {
+	public static function initializeSwrve (appId:Int, apiKey:String, userId:String, appVersion:String):Void {
 
 		#if (android || ios || cpp || CPP)
 		initSwrve(appId, apiKey, userId, appVersion);
