@@ -31,8 +31,14 @@ For payloads the plan is to convert Haxe Anonymous structure to json string in s
 java with something like this:
 
 // Haxe client
+var payload = {
+    'name': 'guy1',
+    'event': 'drunk'
+}
 
 // Haxe Swrve Extension
+// convert anonymous structure to fucking json
+var jsonPayload = haxe.Json.stringify(payload);
 
 
 // Java

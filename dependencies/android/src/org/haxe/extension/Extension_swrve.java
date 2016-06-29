@@ -11,7 +11,8 @@ import android.view.View;
 import android.util.Log;
 import com.swrve.sdk.SwrveSDK;
 import com.swrve.sdk.config.SwrveConfig;
-
+import java.util.HashMap;
+import java.util.Map;
 import java.lang.Override;
 
 
@@ -56,11 +57,9 @@ public class Extension_swrve extends Extension {
 		}
 	}
 
-	public static void userUpdate (String key, String value) {
+	public static void userUpdate (HashMap<String, String> payload) {
 		if(SwrveSDK.getInstance() != null) {
-			//Map<String, String> attributes = new HashMap<String, String>();
-			//attributes.put(key, value);
-			//SwrveSDK.userUpdate(attributes);
+			SwrveSDK.userUpdate(payload);
 		}
 	}
 

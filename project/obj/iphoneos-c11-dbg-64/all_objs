@@ -55,3 +55,4 @@ obj/iphoneos-c11-dbg-64/e7dc1380_SwrveCommonConnectionDelegate.o
 obj/iphoneos-c11-dbg-64/e7dc1380_SwrveSignatureProtectedFile.o
 obj/iphoneos-c11-dbg-64/e85d25b9_ExtensionSwrve.o
 obj/iphoneos-c11-dbg-64/e85d25b9_ExtensionSwrveExternal.o
+obj/iphoneos-c11-dbg-64/e85d25b9_LaunchOptionsGrabber.o

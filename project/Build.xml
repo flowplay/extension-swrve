@@ -75,7 +75,7 @@
 		<!-- extension files to interface with swrve -->
 		<file name="src/ExtensionSwrve.mm" />
 		<file name="src/ExtensionSwrveExternal.mm" />
-
+		<file name="src/LaunchOptionsGrabber.mm" />
 
 
 	</files>
