@@ -44,3 +44,5 @@ var jsonPayload = haxe.Json.stringify(payload);
 // Java
 Type type = new TypeToken<Map<String, String>>(){}.getType();
 Map<String, String> myMap = gson.fromJson("{'k1':'apple','k2':'orange'}", type);
+
+

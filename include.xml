@@ -7,7 +7,7 @@
 		<ndll name="extension_swrve" />
 		<ios linker-flags="-ObjC" />
 	</section>
-	
+
 	<dependency name="extension_swrve" path="dependencies/android" if="android" />
 	<android extension="org.haxe.extension.Extension_swrve" />
 

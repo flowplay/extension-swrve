@@ -14,6 +14,11 @@ import com.swrve.sdk.config.SwrveConfig;
 import java.util.HashMap;
 import java.util.Map;
 import java.lang.Override;
+import com.google.gson.Gson;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
+import com.swrve.sdk.conversations.engine.GsonHelper;
+import com.swrve.sdk.SwrveIAPRewards;
 
 
 /* 
@@ -57,16 +62,49 @@ public class Extension_swrve extends Extension {
 		}
 	}
 
-	public static void userUpdate (HashMap<String, String> payload) {
+
+
+	private static Map<String, String> getPayloadFromJson(String jsonString) {
+		Type type = new TypeToken<Map<String, String>>(){}.getType();
+		Gson gson = GsonHelper.getConfiguredGson();
+		Map<String, String> payload = gson.fromJson(jsonString, type);
+		return payload;
+	}
+
+	public static void userUpdate (String jsonPayload) {
 		if(SwrveSDK.getInstance() != null) {
-			SwrveSDK.userUpdate(payload);
+			SwrveSDK.userUpdate(getPayloadFromJson(jsonPayload));
 		}
 	}
 
-	public static void sendEvent (String eventName) {
+	public static void customEvent (String eventName, String jsonPayload) {
 		if(SwrveSDK.getInstance() != null) {
-			SwrveSDK.event(eventName);
+			SwrveSDK.event(eventName, getPayloadFromJson(jsonPayload));
 		}
+	}
+
+	public static void purchaseItem (String item, String currency, int cost, int quantity) {
+		//Log.d("SwrveDemo", "purchaseItem " + item );
+		SwrveSDK.purchase(item, currency, cost, quantity);
+	}
+
+	public static void currencyGiven (String currency, int amount) {
+		//Log.d("SwrveDemo", "currencyGiven " + currency + " " + amount);
+		SwrveSDK.currencyGiven(currency, (double) amount);
+	}
+
+	public static void virtualItemPurchaseComplete (String sku, int quantity, int localCost, String localCurrency, String productId) {
+		//Log.d("SwrveDemo", "virtualItemPurchaseComplete " + sku);
+		SwrveIAPRewards purchaseRewards = new SwrveIAPRewards();
+		purchaseRewards.addItem(sku, quantity);
+		SwrveSDK.iap(quantity, productId, localCost, localCurrency, purchaseRewards);
+	}
+
+	public static void virtualCurrencyPurchaseComplete (String currency, int quantity, int localCost, String localCurrency) {
+		//Log.d("SwrveDemo", "todo implement virtualCurrencyPurchaseComplete " + currency + " " + quantity);
+		SwrveIAPRewards purchaseRewards = new SwrveIAPRewards();
+		purchaseRewards.addCurrency(currency, quantity);
+		SwrveSDK.iap(quantity, currency, localCost, localCurrency, purchaseRewards);
 	}
 
 	/**
