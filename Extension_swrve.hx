@@ -41,14 +41,6 @@ class Extension_swrve {
 		trace('swrve customEvent not supported on this platform');
 		#end
 	}
-	public static function swrvePurchaseItem (item:String, currency:String, cost:Int, quantity:Int):Void {
-		#if (android || ios)
-		trace('swrve: swrvePurchaseItem ' + item);
-		purchaseItem(item, currency, cost, quantity);
-		#else
-		trace('swrve customEvent not supported on this platform');
-		#end
-	}
 
 	/*
 	static void virtualCurrencyPurchaseComplete(value currency, value quantity, value localCost, value localCurrency);
@@ -60,19 +52,17 @@ class Extension_swrve {
 		trace('swrve: swrveCurrencyGiven not supported on this platform');
 		#end
 	}
-
-	public static function swrveVirtualItemPurchaseComplete (sku:String, quantity:Int, localCost:Int, localCurrency:String, productId:String):Void {
+	public static function swrveVirtualItemPurchaseComplete (sku:String, currency:String, cost:Int, quantity:Int):Void {
 		#if (android || ios)
-		virtualItemPurchaseComplete(sku, quantity, localCost, localCurrency, productId);
+		virtualItemPurchaseComplete(sku, currency, cost, quantity);
 		#else
 		trace('swrve swrveVirtualItemPurchaseComplete not supported on this platform');
 		#end
 	}
 
-	public static function swrveVirtualCurrencyPurchaseComplete (currency:String, quantity:Int, localCost:Int, localCurrency:String):Void {
+	public static function swrveIapPurchaseComplete (quantity:Int, localCurrency:String, localCost:Float, productId:String):Void {
 		#if (android || ios)
-		trace('swrve: swrveVirtualCurrencyPurchaseComplete ' + currency + ' ' + quantity);
-		virtualCurrencyPurchaseComplete(currency, quantity, localCost, localCurrency);
+		iapPurchaseComplete(quantity, localCurrency, localCost,  productId);
 		#else
 		trace('swrve swrveVirtualCurrencyPurchaseComplete not supported on this platform');
 		#end
@@ -82,18 +72,16 @@ class Extension_swrve {
 	private static var initSwrve = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 	private static var userUpdate = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "userUpdate", "(Ljava/lang/String;)V");
 	private static var customEvent = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "customEvent", "(Ljava/lang/String;Ljava/lang/String;)V");
-	private static var purchaseItem = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "purchaseItem", "(Ljava/lang/String;Ljava/lang/String;II)V");
 	private static var currencyGiven = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "currencyGiven", "(Ljava/lang/String;I)V");
-	private static var virtualItemPurchaseComplete = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "virtualItemPurchaseComplete", "(Ljava/lang/String;IILjava/lang/String;Ljava/lang/String;)V");
-	private static var virtualCurrencyPurchaseComplete = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "virtualCurrencyPurchaseComplete", "(Ljava/lang/String;IILjava/lang/String;)V");
+	private static var virtualItemPurchaseComplete = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "virtualItemPurchaseComplete", "(Ljava/lang/String;Ljava/lang/String;II)V");
+	private static var iapPurchaseComplete = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "iapPurchaseComplete", "(ILjava/lang/String;DLjava/lang/String;)V");
 	#elseif ios
 	private static var initSwrve: Dynamic = Lib.load ("swrveExt", "initSwrve", 4);
 	private static var userUpdate: Dynamic = Lib.load ("swrveExt", "userUpdate", 1);
 	private static var customEvent: Dynamic = Lib.load ("swrveExt", "customEvent", 2);
-	private static var purchaseItem: Dynamic = Lib.load ("swrveExt", "purchaseItem", 4);
 	private static var currencyGiven: Dynamic = Lib.load ("swrveExt", "currencyGiven", 2);
-	private static var virtualItemPurchaseComplete: Dynamic = Lib.load ("swrveExt", "virtualItemPurchaseComplete", 5);
-	private static var virtualCurrencyPurchaseComplete: Dynamic = Lib.load ("swrveExt", "virtualCurrencyPurchaseComplete", 4);
+	private static var virtualItemPurchaseComplete: Dynamic = Lib.load ("swrveExt", "virtualItemPurchaseComplete", 4);
+	private static var iapPurchaseComplete: Dynamic = Lib.load ("swrveExt", "iapPurchaseComplete", 4);
 	#end
 	
 	

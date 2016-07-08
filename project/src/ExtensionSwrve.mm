@@ -43,38 +43,29 @@ namespace swrveExt {
                         payload: parsedData];
     }
 
-    static void purchaseItem(value item, value currency, value cost, value quantity) {
-
-        [[Swrve sharedInstance] purchaseItem:[NSString stringWithUTF8String:val_string(item)]
-                                currency: [NSString stringWithUTF8String:val_string(currency)]
-                                cost: val_int(cost)
-                                quantity: val_int(quantity)];
-    }
-
     static void currencyGiven(value currency, value amount ) {
         [[Swrve sharedInstance] currencyGiven: [NSString stringWithUTF8String:val_string(currency)]
                                 givenAmount: val_int(amount)];
     }
 
-    static void virtualItemPurchaseComplete(value sku, value quantity, value localCost, value localCurrency, value productId) {
-        SwrveIAPRewards* rewards = [[SwrveIAPRewards alloc] init];
-        [rewards addItem: [NSString stringWithUTF8String:val_string(sku)] withQuantity: val_int(quantity)];
-        // Send the IAP event to Swrve. Won’t be validated in our servers.
-        [[Swrve sharedInstance] unvalidatedIap:rewards
-                                localCost: val_int(localCost)
-                                localCurrency: [NSString stringWithUTF8String:val_string(localCurrency)] //@"USD"
-                                productId: [NSString stringWithUTF8String:val_string(productId)]
-                                productIdQuantity: val_int(quantity)];
+
+    static void virtualItemPurchaseComplete(value sku, value currency, value cost, value quantity) {
+
+        [[Swrve sharedInstance] purchaseItem:[NSString stringWithUTF8String:val_string(sku)]
+                                currency:[NSString stringWithUTF8String:val_string(currency)]
+                                cost:val_int(cost)
+                                quantity:val_int(quantity)];
     }
 
-    static void virtualCurrencyPurchaseComplete(value currency, value quantity, value localCost, value localCurrency) {
+    static void iapPurchaseComplete(value quantity, value localCurrency, value localCost, value productId) {
+        // todo: expand to allow bonus reward reporting? keeping this simple for now
         SwrveIAPRewards* rewards = [[SwrveIAPRewards alloc] init];
-        [rewards addCurrency:[NSString stringWithUTF8String:val_string(currency)] withAmount: val_int(quantity)];
+        //[rewards addCurrency:[NSString stringWithUTF8String:val_string(currency)] withAmount: val_int(quantity)];
         // Send the IAP event to Swrve. Won’t be validated in our servers.
         [[Swrve sharedInstance] unvalidatedIap:rewards
-                                localCost: val_int(localCost)
+                                localCost: val_float(localCost)
                                 localCurrency: [NSString stringWithUTF8String:val_string(localCurrency)] //@"USD"
-                                productId: [NSString stringWithUTF8String:val_string(currency)]
+                                productId: [NSString stringWithUTF8String:val_string(productId)]
                                 productIdQuantity: val_int(quantity)];
     }
 

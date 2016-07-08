@@ -83,28 +83,28 @@ public class Extension_swrve extends Extension {
 		}
 	}
 
-	public static void purchaseItem (String item, String currency, int cost, int quantity) {
-		//Log.d("SwrveDemo", "purchaseItem " + item );
-		SwrveSDK.purchase(item, currency, cost, quantity);
-	}
-
 	public static void currencyGiven (String currency, int amount) {
 		//Log.d("SwrveDemo", "currencyGiven " + currency + " " + amount);
 		SwrveSDK.currencyGiven(currency, (double) amount);
 	}
 
-	public static void virtualItemPurchaseComplete (String sku, int quantity, int localCost, String localCurrency, String productId) {
+	public static void virtualItemPurchaseComplete (String sku, String currency, int cost, int quantity) {
 		//Log.d("SwrveDemo", "virtualItemPurchaseComplete " + sku);
-		SwrveIAPRewards purchaseRewards = new SwrveIAPRewards();
-		purchaseRewards.addItem(sku, quantity);
-		SwrveSDK.iap(quantity, productId, localCost, localCurrency, purchaseRewards);
+		//SwrveIAPRewards purchaseRewards = new SwrveIAPRewards();
+		//purchaseRewards.addItem(sku, quantity);
+		//SwrveSDK.iap(quantity, productId, localCost, localCurrency, purchaseRewards);
+		//SwrveSDK.iap(quantity, productId, localCost, localCurrency);
+		SwrveSDK.purchase(sku, currency, cost, quantity);
 	}
 
-	public static void virtualCurrencyPurchaseComplete (String currency, int quantity, int localCost, String localCurrency) {
+	public static void iapPurchaseComplete (int quantity, String localCurrency, double localCost, String productId) {
 		//Log.d("SwrveDemo", "todo implement virtualCurrencyPurchaseComplete " + currency + " " + quantity);
 		SwrveIAPRewards purchaseRewards = new SwrveIAPRewards();
-		purchaseRewards.addCurrency(currency, quantity);
-		SwrveSDK.iap(quantity, currency, localCost, localCurrency, purchaseRewards);
+		// todo: implement rewards once they make any sense at all
+		//purchaseRewards.addCurrency(currency, quantity);
+		//SwrveSDK.iap(quantity, currency, localCost, localCurrency, purchaseRewards);
+		SwrveSDK.iap(quantity, productId, localCost, localCurrency, purchaseRewards);
+
 	}
 
 	/**
