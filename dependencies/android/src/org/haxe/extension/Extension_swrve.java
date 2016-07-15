@@ -50,11 +50,12 @@ import com.swrve.sdk.SwrveIAPRewards;
 public class Extension_swrve extends Extension {
 	
 	
-	public static void initSwrve (int appId, String apiKey, String userId, String appVersion ) {
+	public static void initSwrve (int appId, String apiKey, String userId, String appVersion, String senderId ) {
 		try {
 			SwrveConfig config = new SwrveConfig();
 			config.setUserId(userId);
 			config.setAppVersion(appVersion);
+			config.setSenderId(senderId);
 			SwrveSDK.createInstance(Extension.mainActivity, appId, apiKey, config);
 			SwrveSDK.onCreate(Extension.mainActivity);
 		} catch (IllegalArgumentException exp) {

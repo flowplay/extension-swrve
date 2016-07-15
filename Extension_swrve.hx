@@ -14,9 +14,11 @@ import openfl.utils.JNI;
 class Extension_swrve {
 	
 	
-	public static function initializeSwrve (appId:Int, apiKey:String, userId:String, appVersion:String):Void {
+	public static function initializeSwrve (appId:Int, apiKey:String, userId:String, appVersion:String, senderId:String):Void {
 
-		#if (android || ios || cpp || CPP)
+		#if android
+		initSwrve(appId, apiKey, userId, appVersion, senderId);
+		#elseif ios
 		initSwrve(appId, apiKey, userId, appVersion);
 		#else
 		trace('swrve not supported on this platform');
@@ -69,7 +71,7 @@ class Extension_swrve {
 	}
 
 	#if android
-	private static var initSwrve = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+	private static var initSwrve = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 	private static var userUpdate = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "userUpdate", "(Ljava/lang/String;)V");
 	private static var customEvent = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "customEvent", "(Ljava/lang/String;Ljava/lang/String;)V");
 	private static var currencyGiven = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "currencyGiven", "(Ljava/lang/String;I)V");

@@ -11,6 +11,55 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <permission android:name="::APP_PACKAGE::.permission.C2D_MESSAGE"
+                android:protectionLevel="signature" />
+    <uses-permission android:name="::APP_PACKAGE::.permission.C2D_MESSAGE" />
+
+    <application>
+        <!-- swrve push -->
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="8487000" />
+
+        <!-- Configure the aspect of the UI -->
+        <!-- these fucking icons wont load of course -->
+        <!--<meta-data android:name="SWRVE_PUSH_ICON"
+                   android:resource="@drawable/icon"/>
+        <meta-data android:name="SWRVE_PUSH_ICON_MATERIAL"
+                   android:resource="@drawable/icon"/>
+        <meta-data android:name="SWRVE_PUSH_ICON_LARGE"
+                   android:resource="@drawable/icon" />-->
+        <meta-data android:name="SWRVE_PUSH_ACCENT_COLOR"
+                   android:resource="@android:color/black" />
+        <meta-data android:name="SWRVE_PUSH_ACTIVITY"
+                   android:value=".MainActivity"/>
+        <meta-data android:name="SWRVE_PUSH_TITLE"
+                   android:value="::APP_TITLE::"/>
+
+        <receiver android:name="com.google.android.gms.gcm.GcmReceiver"
+                  android:exported="true"
+                  android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="air.com.flowplay.VegasWorldSlots" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.swrve.sdk.gcm.SwrveGcmIntentService" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+        <service android:name="com.swrve.sdk.gcm.SwrveGcmInstanceIDListenerService"
+                 android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
+            </intent-filter>
+        </service>
+        <!-- End of SWRVE PUSH changes -->
+    </application>
 
 
 </manifest>

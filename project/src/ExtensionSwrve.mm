@@ -10,8 +10,12 @@ namespace swrveExt {
     static void initSwrve(value appId, value apiKey, value userId, value appVersion ){
 
         SwrveConfig* config = [[SwrveConfig alloc] init];
+        config.pushEnabled = YES;
         config.userId = [NSString stringWithUTF8String:val_string(userId)];
         config.appVersion = [NSString stringWithUTF8String:val_string(appVersion)];
+
+        // Let the SDK know about your iOS8 Interactive Notifications if you have any in your app
+        //config.pushCategories = [NSSet setWithObjects:YOUR_CATEGORY, nil];
 
         NSDictionary* options = [LaunchOptionsGrabber getLaunchOptions];
 

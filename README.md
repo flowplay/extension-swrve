@@ -1,6 +1,6 @@
 # extension-swrve
 
-An OpenFL Swrve extension that supports ios and android.   
+An OpenFL Swrve 4.4.0 extension that supports ios and android.   
 
 
 ## REMOVE TODOS
@@ -25,24 +25,13 @@ Swrve Events (different implementation than custom events, requires some params)
 purchaseItem
 currencyGiven
 
+# hard coded stuff
+  
+- swrve push requires manifest modification. todo make configurable packagename. packagename for vws is hard coded all over the place
+- manifest issue, config for app title
 
+- swrve senderid is hard coded <-- dont check this in dummy
 
-For payloads the plan is to convert Haxe Anonymous structure to json string in swrve extension haxe.Json.stringify(o); then encode that string in 
-java with something like this:
-
-// Haxe client
-var payload = {
-    'name': 'guy1',
-    'event': 'drunk'
-}
-
-// Haxe Swrve Extension
-// convert anonymous structure to fucking json
-var jsonPayload = haxe.Json.stringify(payload);
-
-
-// Java
-Type type = new TypeToken<Map<String, String>>(){}.getType();
-Map<String, String> myMap = gson.fromJson("{'k1':'apple','k2':'orange'}", type);
-
-
+- 
+  
+  
