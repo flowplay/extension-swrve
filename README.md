@@ -23,15 +23,4 @@ onboarding.finish
 Swrve Events (different implementation than custom events, requires some params)
 <IAP event name> (verified or unverified)
 purchaseItem
-currencyGiven
-
-# hard coded stuff
-  
-- swrve push requires manifest modification. todo make configurable packagename. packagename for vws is hard coded all over the place
-- manifest issue, config for app title
-
-- swrve senderid is hard coded <-- dont check this in dummy
-
-- 
-  
-  
+currencyGiven  

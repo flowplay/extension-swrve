@@ -25,8 +25,4 @@ static NSDictionary *_launchOptions = nil;
     return _launchOptions;
 }
 
-/*-(void) application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    // by default - no action if the user gets a push while the app is running.
-}*/
-
 @end
