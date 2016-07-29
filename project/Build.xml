@@ -85,7 +85,7 @@
 	<set name="SLIBEXT" value=".so" if="webos"/>
 	
 	<set name="DEBUGEXTRA" value="-debug" if="fulldebug" />
-	
+
 	<target id="NDLL" output="${LIBPREFIX}extension_swrve${MSVC_LIB_VERSION}${DEBUGEXTRA}${LIBEXTRA}" tool="linker" toolid="${STD_MODULE_LINK}">
 		
 		<outdir name="../ndll/${BINDIR}"/>
@@ -93,6 +93,7 @@
 		<section if="iphone" >
 			<files id="iphone" if="iphone" />
 		</section>
+
 
 	</target>
 
