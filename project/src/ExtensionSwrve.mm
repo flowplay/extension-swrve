@@ -11,6 +11,8 @@ namespace swrveExt {
 
         SwrveConfig* config = [[SwrveConfig alloc] init];
         config.pushEnabled = YES;
+        // puting a fake event name here so that the native permission dialog doesn't come up, it is triggered by a swrve conversation
+        config.pushNotificationEvents = [[NSSet alloc] initWithArray:@[@"ihateobjcandswrve"]];
         config.userId = [NSString stringWithUTF8String:val_string(userId)];
         config.appVersion = [NSString stringWithUTF8String:val_string(appVersion)];
 
