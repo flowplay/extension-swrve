@@ -9,5 +9,6 @@
 	<property file="project.properties"/>
 	
 	<import file="${sdk.dir}/tools/ant/build.xml"/>
+	<property name="asset.dir" value="assets" />
 	
 </project>

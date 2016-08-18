@@ -9,5 +9,5 @@
 	<property file="project.properties"/>
 	
 	<import file="${sdk.dir}/tools/ant/build.xml"/>
-	
+
 </project>
