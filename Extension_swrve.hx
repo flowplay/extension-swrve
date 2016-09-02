@@ -13,19 +13,6 @@ import openfl.utils.JNI;
 
 class Extension_swrve {
 	
-	
-	public static function initializeSwrve (appId:Int, apiKey:String, userId:String, appVersion:String, senderId:String):Void {
-
-		#if android
-		initSwrve(appId, apiKey, userId, appVersion, senderId);
-		#elseif ios
-		initSwrve(appId, apiKey, userId, appVersion);
-		#else
-		trace('swrve not supported on this platform');
-		#end
-		
-	}
-
 	public static function swrveUserUpdate (payload:Dynamic):Void {
 		#if (android || ios)
 		trace('swrve: swrveUserUpdate ' + payload);
@@ -33,7 +20,6 @@ class Extension_swrve {
 		#else
 		trace('swrve userUpdate not supported on this platform');
 		#end
-
 	}
 
 	public static function swrveCustomEvent (eventName:String, payload:Dynamic):Void {
@@ -71,14 +57,12 @@ class Extension_swrve {
 	}
 
 	#if android
-	private static var initSwrve = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "initSwrve", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 	private static var userUpdate = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "userUpdate", "(Ljava/lang/String;)V");
 	private static var customEvent = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "customEvent", "(Ljava/lang/String;Ljava/lang/String;)V");
 	private static var currencyGiven = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "currencyGiven", "(Ljava/lang/String;I)V");
 	private static var virtualItemPurchaseComplete = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "virtualItemPurchaseComplete", "(Ljava/lang/String;Ljava/lang/String;II)V");
 	private static var iapPurchaseComplete = JNI.createStaticMethod ("org.haxe.extension.Extension_swrve", "iapPurchaseComplete", "(ILjava/lang/String;DLjava/lang/String;)V");
 	#elseif ios
-	private static var initSwrve: Dynamic = Lib.load ("swrveExt", "initSwrve", 4);
 	private static var userUpdate: Dynamic = Lib.load ("swrveExt", "userUpdate", 1);
 	private static var customEvent: Dynamic = Lib.load ("swrveExt", "customEvent", 2);
 	private static var currencyGiven: Dynamic = Lib.load ("swrveExt", "currencyGiven", 2);

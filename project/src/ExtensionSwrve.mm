@@ -7,7 +7,7 @@
 
 namespace swrveExt {
 
-    static void initSwrve(value appId, value apiKey, value userId, value appVersion ){
+    /*static void initSwrve(value appId, value apiKey, value userId, value appVersion ){
 
         SwrveConfig* config = [[SwrveConfig alloc] init];
         config.pushEnabled = YES;
@@ -26,7 +26,7 @@ namespace swrveExt {
                         config:config
                         launchOptions:options];
 
-    }
+    }*/
 
    static void userUpdate(value jsonPayload) {
         // convert jsonPayload to NSDictionary

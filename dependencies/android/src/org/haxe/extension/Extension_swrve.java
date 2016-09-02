@@ -19,6 +19,7 @@ import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
 import com.swrve.sdk.conversations.engine.GsonHelper;
 import com.swrve.sdk.SwrveIAPRewards;
+import jdk.nashorn.internal.runtime.Debug;
 
 
 /* 
@@ -48,22 +49,8 @@ import com.swrve.sdk.SwrveIAPRewards;
 	back to Haxe from Java.
 */
 public class Extension_swrve extends Extension {
-	
-	
-	public static void initSwrve (int appId, String apiKey, String userId, String appVersion, String senderId ) {
-		try {
-			SwrveConfig config = new SwrveConfig();
-			config.setUserId(userId);
-			config.setAppVersion(appVersion);
-			config.setSenderId(senderId);
-			SwrveSDK.createInstance(Extension.mainActivity, appId, apiKey, config);
-			SwrveSDK.onCreate(Extension.mainActivity);
-		} catch (IllegalArgumentException exp) {
-			Log.e("SwrveDemo", "Could not initialize the Swrve SDK", exp);
-		}
-	}
 
-
+	private static int _appId = 3943;
 
 	private static Map<String, String> getPayloadFromJson(String jsonString) {
 		Type type = new TypeToken<Map<String, String>>(){}.getType();
@@ -124,6 +111,22 @@ public class Extension_swrve extends Extension {
 	 * Called when the activity is starting.
 	 */
 	public void onCreate (Bundle savedInstanceState) {
+
+		try {
+			if(SwrveSDK.getInstance() == null) {
+				Log.d("swrve", "*********** creating swrve instance.");
+				SwrveConfig config = new SwrveConfig();
+				//config.setUserId(userId);
+				config.setAppVersion("::APP_BUILD_NUMBER::");
+				config.setSenderId("::config.swrve.senderId::");
+				SwrveSDK.createInstance(Extension.mainActivity, ::config.swrve.appId::, "::config.swrve.apiKey::", config);
+			} else {
+				Log.d("swrve", "*********** swrve instance already created");
+			}
+			SwrveSDK.onCreate(Extension.mainActivity);
+		} catch (IllegalArgumentException exp) {
+			Log.e("SwrveDemo", "*********** Could not initialize the Swrve SDK", exp);
+		}
 	}
 
 
@@ -166,7 +169,10 @@ public class Extension_swrve extends Extension {
 	 */
 	public void onResume() {
 		if(SwrveSDK.getInstance() != null) {
+			Log.d("swrve", "on resume. have sdk instance");
 			SwrveSDK.onResume(Extension.mainActivity);
+		} else {
+			Log.d("swrve", "on resume. have NO sdk instance");
 		}
 	}
 
@@ -191,6 +197,15 @@ public class Extension_swrve extends Extension {
 
 
 
+	}
+
+	public void onNewIntent(Intent intent) {
+		if(SwrveSDK.getInstance() != null) {
+			SwrveSDK.onNewIntent(intent);
+			Log.d("swrve", "onNewIntent. have sdk instance");
+		} else {
+			Log.d("swrve", "onNewIntent. have NO sdk instance");
+		}
 	}
 
 	/*

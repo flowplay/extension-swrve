@@ -10,16 +10,12 @@
 namespace swrveExt {
 
 
-	static void initSwrve(value appId, value apiKey, value userId, value appVersion );
 	static void userUpdate(value jsonPayload);
 	static void customEvent(value eventName, value jsonPayload);
 	static void currencyGiven(value currency, value amount );
 	static void virtualItemPurchaseComplete(value sku, value currency, value cost, value quantity);
 	static void iapPurchaseComplete(value quantity, value localCurrency, value localCost, value productId);
 
-	//static NSDictionary* shitDictionaryFromJson(NSString * jsonString);
-
-	DEFINE_PRIM(initSwrve, 4);
 	DEFINE_PRIM(userUpdate, 1);
 	DEFINE_PRIM(customEvent, 2);
 	DEFINE_PRIM(currencyGiven, 2);

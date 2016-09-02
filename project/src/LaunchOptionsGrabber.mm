@@ -20,8 +20,8 @@ static NSDictionary *_launchOptions = nil;
 
 +(NSDictionary*) getLaunchOptions
 {
-    //NSLog(@"getLaunchOptions called*********!!!!!!!!!!");
-    //NSLog( @"launchoptions = %@", _launchOptions );
+    NSLog(@"getLaunchOptions called*********!!!!!!!!!!");
+    NSLog( @"launchoptions = %@", _launchOptions );
     return _launchOptions;
 }
 
