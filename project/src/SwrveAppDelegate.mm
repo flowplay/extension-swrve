@@ -29,37 +29,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"swrve: DeepLinkApplicationDelegate application  ******************************************");
-        NSLog(@"buildNumber: ::APP_BUILD_NUMBER::");
-        NSLog(@"appId: ::config.swrve.appId::");
-        NSLog(@"buildNumber: ::config.swrve.apiKey::");
 
-        NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-        NSLog(@"CFBundleVersion = %@", appVersion);
+    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    int appId = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"swrve.appId"] intValue];
+    NSString *apiKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"swrve.apiKey"];
 
-        int appId = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"swrve.appId"] intValue];
-        NSLog(@"appId fuck you ios = %d", appId);
-
-        //NSString *appId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"swrve.appId"];
-        //NSLog(@"appId = %@", appId);
-
-        NSString *apiKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"swrve.apiKey"];
-        NSLog(@"apiKey = %@", apiKey);
+    SwrveConfig* config = [[SwrveConfig alloc] init];
+    config.pushEnabled = YES;
+    // puting a fake event name here so that the native permission dialog doesn't come up, it is triggered by a swrve conversation
+    config.pushNotificationEvents = [[NSSet alloc] initWithArray:@[@"ihateobjc"]];
+    config.appVersion = appVersion;
+    [Swrve sharedInstanceWithAppID: appId
+                    apiKey:apiKey
+                    config:config
+                    launchOptions:launchOptions];
 
 
-
-        SwrveConfig* config = [[SwrveConfig alloc] init];
-        config.pushEnabled = YES;
-        // puting a fake event name here so that the native permission dialog doesn't come up, it is triggered by a swrve conversation
-        config.pushNotificationEvents = [[NSSet alloc] initWithArray:@[@"ihateobjc"]];
-        config.appVersion = appVersion;
-        [Swrve sharedInstanceWithAppID: appId
-                        apiKey:apiKey
-                        config:config
-                        launchOptions:launchOptions];
-
-
-        return YES;
+    return YES;
 }
 
 @end
