@@ -76,7 +76,6 @@
 		<file name="src/ExtensionSwrve.mm" />
 		<file name="src/ExtensionSwrveExternal.mm" />
 		<file name="src/LaunchOptionsGrabber.mm" />
-		<file name="src/NMEAppDelegate+Swrve.mm" />
 		<file name="src/SwrveAppDelegate.mm" />
 
 

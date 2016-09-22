@@ -14,7 +14,7 @@
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *) launchOptions
 {
     NSLog(@"hit willFinishLaunchingWithOptions --- - - -- - - - - - -");
-    return [[SwrveAppDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    return [[SwrveAppDelegate sharedInstance] application:application willFinishLaunchingWithOptions:launchOptions];
 }
 
 
