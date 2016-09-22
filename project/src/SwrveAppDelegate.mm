@@ -30,23 +30,19 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"swrve: SwrveAppDelegate application:willFinishLaunchingWithOptions:");
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
-    NSLog(@"CFBundleVersion %@", appVersion);
-
     int appId = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"swrve.appId"] intValue];
-    NSLog(@"appId %d", appId);
-
     NSString *apiKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"swrve.apiKey"];
-    NSLog(@"apiKey = %@", apiKey);
 
     SwrveConfig* config = [[SwrveConfig alloc] init];
     config.pushEnabled = YES;
-
     // puting a fake event name here so that the native permission dialog doesn't come up, it is triggered by a swrve conversation
     config.pushNotificationEvents = [[NSSet alloc] initWithArray:@[@"ihateobjc"]];
     config.appVersion = appVersion;
-    [Swrve sharedInstanceWithAppID: appId apiKey:apiKey config:config launchOptions:launchOptions];
+    [Swrve sharedInstanceWithAppID: appId
+                    apiKey:apiKey
+                    config:config
+                    launchOptions:launchOptions];
 
     return YES;
 }
